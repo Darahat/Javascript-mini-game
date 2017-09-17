@@ -12,7 +12,7 @@ var playerscore2=0;
 var endTextHeight=250;
 var endTextWidth=500;
 var showingWinScreen=false;
-const WINNING_SCORE=1;
+const WINNING_SCORE=15;
 const PADDLE_HEIGHT=100;
  const PADDLE_THICKNESS=10;
 //start canvas with onload page
@@ -50,7 +50,7 @@ function ballReset(){
   ballSpeedX=-10;
   ballX=canvas.width/2;
   ballY=canvas.height/2;
-showingWinScreen=true;
+
  // paddle1Y=250;
  //   paddle2Y=250;
 }
@@ -126,29 +126,30 @@ function colorCircle(centerX,centerY,radius,drawColor){
 function endgame(){
   ballX=475;
   ballY=245;
-
+  canvasContext.fillStyle='white';
+  canvasContext.fillText("click to continue",endTextWidth,endTextHeight+200);
+showingWinScreen=true;
 }
 function drawEverything(){
   console.log(ballX);
   //next line blanks out the screen black
   colorRect(0,0,canvas.width,canvas.height,'black');
-  if(showingWinScreen){
+  // if(showingWinScreen){
     if(playerscore2>=WINNING_SCORE){
       canvasContext.fillStyle='white';
-      canvasContext.fillText("Right Player 2 win",endTextWidth,endTextHeight);
-
+      canvasContext.fillText("Right Player win",endTextWidth,endTextHeight);
+  endgame();
     }
     else if(playerscore1>=WINNING_SCORE){
       canvasContext.fillStyle='white';
-      canvasContext.fillText("Left Player  win ",endTextWidth,endTextHeight);
-
+      canvasContext.fillText("Left Player win ",endTextWidth,endTextHeight);
+  endgame();
     }
-      endgame();
-    canvasContext.fillStyle='white';
-    canvasContext.fillText("click to continue",endTextWidth,endTextHeight+200);
 
-    return;
-  }
+
+
+  //   return;
+  // }
   //next line blanks out the box white
   colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
   //next line blanks out the box white
